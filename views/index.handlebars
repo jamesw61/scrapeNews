@@ -1,17 +1,20 @@
 <div class="container">
-    <div class="burgerContainer burgerWell">
-        <h2>TV News</h2>
-        <ul>
+    <!-- <div class="burgerContainer burgerWell"> -->
+        <h1>TV News</h1>
+        <!-- <ul> -->
             {{#each bacon}}
-            <div class="burgerCell">
-                <li>
-                    <div class="burgerName">
-                        <a href="{{link}}"><img src="{{image}}" /></a>
-                        <h3> {{title}}</h3>
+            <!-- <div class="burgerCell"> -->
+                <!-- <li> -->
+                    <div class="articleWell">
+                        <a href="{{link}}"  target="_blank" style="display: inline-block"><img src="{{image}}" style="width: 300px"/></a>
+                        <h3 style="display: inline-block; text-align: center"> {{title}}</h3>
+                        <button class="noteBtn" data-id="{{_id}}">Note</button>
+                        <div id="notes"></div>
+                        
                     </div>
-                </li>
-            </div>
+                <!-- </li> -->
+            <!-- </div> -->
             {{/each}}
-        </ul>
-    </div>
+        <!-- </ul> -->
+    <!-- </div> -->
 </div>
