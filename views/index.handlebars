@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="burgerContainer burgerWell">
+        <h2>TV News</h2>
+        <ul>
+            {{#each bacon}}
+            <div class="burgerCell">
+                <li>
+                    <div class="burgerName">
+                        <a href="{{link}}"><img src="{{image}}" /></a>
+                        <h3> {{title}}</h3>
+                    </div>
+                </li>
+            </div>
+            {{/each}}
+        </ul>
+    </div>
+</div>
