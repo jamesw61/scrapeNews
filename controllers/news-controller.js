@@ -6,7 +6,6 @@ var Article = require("../models/Article.js");
 
 
 router.get("/", function(req, res) {
-    
         Article.find({}, function(error, doc) {
             if (error) {
                 console.log(error);

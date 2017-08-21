@@ -11,6 +11,12 @@ router.get("/", function(req, res) {
   request("http://www.comingsoon.net/tv", function(error, response, html) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(html);
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     // Now, we grab every h2 within an article tag, and do the following:
     $(".listed-article-container").each(function(i, element) {
 
@@ -35,13 +41,14 @@ router.get("/", function(req, res) {
         // Or log the doc
         else {
           console.log(doc);
+          // return res.render("index", { bacon: doc });
         }
       });
 
     });
   });
   // Tell the browser that we finished scraping the text
-  res.send("Scrape Complete");
+  res.redirect("/");
 });
 
 module.exports = router;
