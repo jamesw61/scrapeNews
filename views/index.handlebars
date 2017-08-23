@@ -1,22 +1,38 @@
-<div class="container">
-    <!-- <div class="burgerContainer burgerWell"> -->
-    <h1 style="display: inline-block; margin-right: 20px">TV News</h1>
-    <form action="/scrape" method="get">
-        <button type="submit">Scrape</button>
-    </form>
-    <!-- <ul> -->
-    {{#each bacon}}
-    <!-- <div class="burgerCell"> -->
-    <!-- <li> -->
-    <div class="articleWell">
-        <a href="{{link}}" target="_blank" style="display: inline-block"><img src="{{image}}" style="width: 300px"/></a>
-        <h3 style="display: inline-block; text-align: center"> {{title}}</h3>
-        <button class="noteBtn" data-id="{{_id}}">Note</button>
+<div class="wrapper">
+    <div class="box header">
+        <div class="navbar">
+            <a id="txtOne" class="nav" href="/"><p>Home</p></a>
+            <a id="txtTwo" class="nav" href="/saves"><p>Saved Articles</p></a>
+            <form action="/scrape" method="get">
+                <button id="scrapeBtn" class="nav" type="submit">Scrape</button>
+            </form>
+        </div>
+        <h2 class="headerText">TV News</h2>
+    </div>
+    <!--   <div class="box sidebar">Sidebar</div> -->
+    <div class="box content">
+        {{#each bacon}}
+        <div class="articleWell">
+            <a class="picture" href="{{link}}" target="_blank" style="display: inline-block"><img src="{{image}}" style="height: 100px"/></a>
+            <h3 class="headline" style="display: inline-block; align-self: center;"> {{title}}</h3>
+            <div class="btns">
+            <button class="artBtn" id="noteBtn" data-id="{{_id}}">Notes</button>
+
+            <form action="/saves/{{_id}}" method="post">
+            <button class="artBtn" id="saveBtn" type="submit">Save</button>
+            </form>
+
+            </div>
+        </div>
+        {{/each}}
+    </div> 
+
+
+    <div class="box sidebar2">
+      
+
         <div id="notes"></div>
     </div>
-    <!-- </li> -->
-    <!-- </div> -->
-    {{/each}}
-    <!-- </ul> -->
-    <!-- </div> -->
+    <div class="box footer">Footer
+    </div>
 </div>

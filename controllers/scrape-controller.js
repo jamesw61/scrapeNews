@@ -40,7 +40,7 @@ router.get("/", function(req, res) {
         }
         // Or log the doc
         else {
-          console.log(doc);
+          // res.redirect("/");
           // return res.render("index", { bacon: doc });
         }
       });
@@ -48,7 +48,7 @@ router.get("/", function(req, res) {
     });
   });
   // Tell the browser that we finished scraping the text
-  res.redirect("/");
+  res.send('scrape done');
 });
 
 module.exports = router;

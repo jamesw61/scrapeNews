@@ -10,7 +10,7 @@
 
 
 // Whenever someone clicks a p tag
-$(document).on("click", ".noteBtn", function() {
+$(document).on("click", "#noteBtn", function() {
   // Empty the notes from the note section
   $("#notes").empty();
   // Save the id from the p tag
@@ -24,22 +24,23 @@ $(document).on("click", ".noteBtn", function() {
     // With that done, add the note information to the page
     .done(function(data) {
       console.log(data);
-      // The title of the article
-      $("#notes").append("<h2>" + data.title + "</h2>");
-      // An input to enter a new title
-      $("#notes").append("<input id='titleinput' name='title' >");
-      // A textarea to add a new note body
-      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
-      // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      $("#notes").append("<h4>" + data.title + "</h4>");
 
-      // If there's a note in the article
       if (data.note) {
         // Place the title of the note in the title input
-        $("#titleinput").val(data.note.title);
-        // Place the body of the note in the body textarea
-        $("#bodyinput").val(data.note.body);
+        $("#notes").append("<br><h5>Title: " + data.note.title + "</h5>" );
+        $("#notes").append('<h5 style="display: inline-block">Note: </h5><p style="display: inline-block">' + data.note.body + "</p>" );      
       }
+      // The title of the article
+      // An input to enter a new title
+      $("#notes").append("<h5>Title</h5><input id='titleinput' name='title' ><br>");
+      // A textarea to add a new note body
+      $("#notes").append("<h5>Note</h5><textarea id='bodyinput' name='body'></textarea>");
+      // A button to submit a new note, with the id of the article saved to it
+      $("#notes").append("<br><button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+
+      // If there's a note in the article
+      
     });
 });
 
@@ -71,3 +72,24 @@ $(document).on("click", "#savenote", function() {
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
+
+// $(document).on("click", "#saveBtn", function() {
+//   // Grab the id associated with the article from the submit button
+//   var thisId = $(this).attr("data-id");
+//   // Run a POST request to change the note, using what's entered in the inputs
+//   $.ajax({
+//     method: "POST",
+//     url: "/save/" + thisId,
+//     data: thisId
+//   })
+//     // With that done
+//     .done(function(data) {
+//       // Log the response
+//       console.log("x" + data);
+//       // Empty the notes section
+      
+//     });
+
+//   // Also, remove the values entered in the input and textarea for note entry
+ 
+// });

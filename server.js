@@ -50,10 +50,13 @@ db.once("open", function() {
 const news = require("./controllers/news-controller.js");
 const scrape = require("./controllers/scrape-controller.js");
 const notes = require("./controllers/notes-controller.js");
+const saves = require("./controllers/saves-controller.js");
 
 app.use("/", news);
 app.use("/scrape", scrape);
 app.use("/notes", notes);
+app.use("/saves", saves);
+
 
 // A GET request to scrape the echojs website
 
