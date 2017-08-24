@@ -29,11 +29,14 @@ $(document).on("click", "#noteBtn", function() {
       if (data.note) {
         // Place the title of the note in the title input
         $("#notes").append("<br><h5>Title: " + data.note.title + "</h5>" );
+        $("#notes").append("<br><h5>Author: " + data.note.author + "</h5>" );        
         $("#notes").append('<h5 style="display: inline-block">Note: </h5><p style="display: inline-block">' + data.note.body + "</p>" );      
       }
       // The title of the article
       // An input to enter a new title
       $("#notes").append("<h5>Title</h5><input id='titleinput' name='title' ><br>");
+      $("#notes").append("<h5>Author</h5><input id='authorinput' name='author' ><br>");
+
       // A textarea to add a new note body
       $("#notes").append("<h5>Note</h5><textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
@@ -56,6 +59,7 @@ $(document).on("click", "#savenote", function() {
     data: {
       // Value taken from title input
       title: $("#titleinput").val(),
+      author: $("#authorinput").val(),
       // Value taken from note textarea
       body: $("#bodyinput").val()
     }
@@ -71,6 +75,8 @@ $(document).on("click", "#savenote", function() {
   // Also, remove the values entered in the input and textarea for note entry
   $("#titleinput").val("");
   $("#bodyinput").val("");
+  $("#authorinput").val("");
+
 });
 
 // $(document).on("click", "#saveBtn", function() {
