@@ -9,6 +9,9 @@ var NoteSchema = new Schema({
   title: {
     type: String
   },
+  author: {
+  	type: String
+  },
   // Just a string
   body: {
     type: String

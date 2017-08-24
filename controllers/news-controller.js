@@ -6,7 +6,8 @@ var Article = require("../models/Article.js");
 
 
 router.get("/", function(req, res) {
-        Article.find({}, function(error, doc) {
+        Article.find({}).sort({"_id": 1}).limit(15)
+        .exec(function(error, doc) {
             if (error) {
                 console.log(error);
             }
