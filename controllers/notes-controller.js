@@ -1,11 +1,7 @@
 var express = require("express");
-// var db = require("../models");
 var router = express.Router();
 var Article = require("../models/Article.js");
 var Note = require("../models/Note.js");
-
-// var request = require("request");
-// var cheerio = require("cheerio");
 
 
 router.post("/:id", function(req, res) {

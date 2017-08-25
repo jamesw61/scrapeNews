@@ -150,6 +150,7 @@ body {
 
 .picture {
   grid-column-start: 1;
+  align-self: center;
 }
 
 .headline {
