@@ -18,7 +18,7 @@
         {{#each bacon}}
         <div class="articleWell">
             <a class="picture" href="{{link}}" target="_blank" style="display: inline-block"><img src="{{image}}" style="height: 100px"/></a>
-            <h3 class="headline" style="display: inline-block; align-self: center;"> {{title}}</h3>
+            <a class="headline" href="{{link}}"><h3 style="display: inline-block; align-self: center;"> {{title}}</h3></a>
             <div class="btns">
                 <button class="artBtn" id="noteBtn" data-id="{{_id}}">Notes</button>
                 {{#unless saved}}
