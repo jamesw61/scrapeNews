@@ -1,18 +1,21 @@
-// Grab the articles as a json
-// $.getJSON("/articles", function(data) {
-//   // For each one
-//   for (var i = 0; i < data.length; i++) {
-//     // Display the apropos information on the page
-//     $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-//     $("#articles").append("<img src='" + data[i].image + "'>");
-//   }
-// });
+  $(".modal").hide();
 
 
-// Whenever someone clicks a p tag
+$(document).on("click", "#scrape", function() {
+  $.ajax({
+    method: "GET",
+    url: "/scrape"
+  })
+  .done(function(data){
+    console.log(data);
+  });
+});
+
+
 $(document).on("click", "#noteBtn", function() {
   // Empty the notes from the note section
-  $("#notes").empty();
+  $(".modal").empty();
+  $(".modal").show();
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
 
@@ -23,24 +26,32 @@ $(document).on("click", "#noteBtn", function() {
   })
     // With that done, add the note information to the page
     .done(function(data) {
-      console.log(data);
-      $("#notes").append("<h4>" + data.title + "</h4>");
+      // var x = data.toString();
+      console.log('data:  ' + data);
+      $(".modal").append('<h3 class="notesTitle">'  + data.title + "</h3>");
 
-      if (data.note) {
-        // Place the title of the note in the title input
-        $("#notes").append("<br><h5>Title: " + data.note.title + "</h5>" );
-        $("#notes").append("<br><h5>Author: " + data.note.author + "</h5>" );        
-        $("#notes").append('<h5 style="display: inline-block">Note: </h5><p style="display: inline-block">' + data.note.body + "</p>" );      
+      if (data.notes) {
+        for(let i = 0; i < data.notes.length; i++) { 
+        var newWell = $('<div class="noteWell"></div>');
+        newWell.append('<h5 class="noteTitle">Title: '  + data.notes[i].title + "</h5>" );
+        newWell.append('<h5 class="noteAuthor">Author: '  + data.notes[i].author + "</h5>" );        
+        newWell.append('<h5 class="noteBody">' + data.notes[i].body + "</h5>" );
+        $('.modal').append(newWell);
+        }      
       }
       // The title of the article
       // An input to enter a new title
-      $("#notes").append("<h5>Title</h5><input id='titleinput' name='title' ><br>");
-      $("#notes").append("<h5>Author</h5><input id='authorinput' name='author' ><br>");
+      var addNote = $('<div class="addNote"></div>');
+      addNote.append('<p class="titleInput">Title</p><input id="titleinput" name="title" ><br>' );
+      addNote.append('<p class="authorInput">Author</p><input id="authorinput" name="author" ><br>' );
 
       // A textarea to add a new note body
-      $("#notes").append("<h5>Note</h5><textarea id='bodyinput' name='body'></textarea>");
+      addNote.append('<p class="bodyInputLabel">Note</p><textarea id="bodyinput" name="body"></textarea>' );
       // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<br><button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      addNote.append('<br><br><button data-id="'  + data._id + '"id="savenote">Save Note</button>');
+      addNote.append('<button data-id="'  + data._id + '"id="exit">Exit</button>');
+
+      $('.modal').append(addNote);
 
       // If there's a note in the article
       
@@ -69,7 +80,8 @@ $(document).on("click", "#savenote", function() {
       // Log the response
       console.log(data);
       // Empty the notes section
-      $("#notes").empty();
+      $(".modal").empty();
+      $(".modal").hide();
     });
 
   // Also, remove the values entered in the input and textarea for note entry
@@ -79,6 +91,9 @@ $(document).on("click", "#savenote", function() {
 
 });
 
+$(document).on("click", "#exit", function() {
+  $('.modal').empty().hide();
+});
 // $(document).on("click", "#saveBtn", function() {
 //   // Grab the id associated with the article from the submit button
 //   var thisId = $(this).attr("data-id");

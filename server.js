@@ -50,42 +50,14 @@ db.once("open", function() {
 const news = require("./controllers/news-controller.js");
 const scrape = require("./controllers/scrape-controller.js");
 const notes = require("./controllers/notes-controller.js");
-const saves = require("./controllers/saves-controller.js");
+const saved = require("./controllers/saved-controller.js");
 
 app.use("/", news);
 app.use("/scrape", scrape);
 app.use("/notes", notes);
-app.use("/saves", saves);
+app.use("/saved", saved);
 
 
-// A GET request to scrape the echojs website
-
-
-
-// // This will get the articles we scraped from the mongoDB
-// app.get("/articles", function(req, res) {
-//   // Grab every doc in the Articles array
-//   Article.find({}, function(error, doc) {
-//     // Log any errors
-//     if (error) {
-//       console.log(error);
-//     }
-//     // Or send the doc to the browser as a json object
-//     else {
-//       res.json(doc);
-//     }
-//   });
-// });
-
-// // Grab an article by it's ObjectId
-
-
-
-// // Create a new note or replace an existing note
-
-
-
-// Listen on port 3000
 app.listen(3000, function() {
   console.log("App running on port 3000!");
 });

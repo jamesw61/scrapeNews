@@ -24,9 +24,26 @@ router.post("/:id", function(req, res) {
                 console.log(err);
             }
             else {
-               res.redirect('/saves'); 
+               res.redirect("/"); 
             }
         });
 });
+
+router.post("/unsave/:id", function(req, res) {
+        console.log(req.params.id);
+        // let x = 'ObjectId("' + req.params.id + '")';
+        // console.log(x);
+        Article.findOneAndUpdate({ "_id": req.params.id},{"saved": false})
+        .exec(function(err, doc) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+               res.redirect("/"); 
+            }
+        });
+});
+
+
 
 module.exports = router;

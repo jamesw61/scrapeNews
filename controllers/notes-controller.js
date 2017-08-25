@@ -21,7 +21,7 @@ router.post("/:id", function(req, res) {
     // Otherwise
     else {
       // Use the article id to find and update it's note
-      Article.findOneAndUpdate({ "_id": req.params.id }, { "note": doc._id })
+      Article.findOneAndUpdate({ "_id": req.params.id }, {$push: {"notes": doc._id} })
       // Execute the above query
       .exec(function(err, doc) {
         // Log any errors
@@ -30,7 +30,7 @@ router.post("/:id", function(req, res) {
         }
         else {
           // Or send the document to the browser
-          res.send(doc);
+          res.json(doc);
         }
       });
     }
@@ -41,7 +41,7 @@ router.get("/:id", function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   Article.findOne({ "_id": req.params.id })
   // ..and populate all of the notes associated with it
-  .populate("note")
+  .populate("notes")
   // now, execute our query
   .exec(function(error, doc) {
     // Log any errors
@@ -50,6 +50,7 @@ router.get("/:id", function(req, res) {
     }
     // Otherwise, send the doc to the browser as a json object
     else {
+      console.log('doc: ' + doc);
       res.json(doc);
     }
   });
