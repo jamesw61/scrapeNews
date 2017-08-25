@@ -2,9 +2,10 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var port = process.env.PORT || 3000;
 // Requiring our Note and Article models
-var Note = require("./models/Note.js");
-var Article = require("./models/Article.js");
+// var Note = require("./models/Note.js");
+// var Article = require("./models/Article.js");
 // Our scraping tools
 // var request = require("request");
 // var cheerio = require("cheerio");
@@ -30,9 +31,11 @@ app.set("view engine", "handlebars");
 
 // Database configuration with mongoose
 mongoose.connect("mongodb://heroku_z2rz24m6:sj29b4n8g08g47q21gp5sijj9e@ds151222.mlab.com:51222/heroku_z2rz24m6");
+
 // mongoose.connect("mongodb://localhost/tvNews", {
 //   useMongoClient: true
 // });
+
 var db = mongoose.connection;
 
 // Show any mongoose errors
@@ -59,6 +62,6 @@ app.use("/notes", notes);
 app.use("/saved", saved);
 
 
-app.listen(3000, function() {
-  console.log("App running on port 3000!");
+app.listen(port, function() {
+  console.log("App running on port " + port);
 });
