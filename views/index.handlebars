@@ -13,12 +13,11 @@
         </div>
         <h2 class="headerText">ComingSoon.net TV News</h2>
     </div>
-    <!--   <div class="box sidebar">Sidebar</div> -->
     <div class="box content">
         {{#each bacon}}
         <div class="articleWell">
             <a class="picture" href="{{link}}" target="_blank" style="display: inline-block"><img src="{{image}}" style="height: 100px"/></a>
-            <a class="headline" href="{{link}}"><h3 style="display: inline-block; align-self: center;"> {{title}}</h3></a>
+            <a class="headline" href="{{link}}" target="_blank"><h3 style="display: inline-block; align-self: center;"> {{title}}</h3></a>
             <div class="btns">
                 <button class="artBtn" id="noteBtn" data-id="{{_id}}">Notes</button>
                 {{#unless saved}}
@@ -33,24 +32,12 @@
                 <form action="/delete/{{_id}}" method="post">
                     <button class="artBtn" id="delBtn" type="submit">Delete</button>
                 </form>
-
             </div>
         </div>
         {{/each}}
     </div>
-    <!--  <div class="box sidebar2">
- 
-
-        <div id="notes">
-            <div class="noteWell">
-            <h5 class="noteTitle">Title: My Title </h5> 
-            <h5 class="noteAuthor">Author: jmwick </h5> 
-            <h5 class="noteBodyLabel">Note: </h5><p class="noteBody"> this is a message that is important and meaningful</p> 
-            </div>
-        </div>
-    </div> -->
     <div class="box footer">Not a Sticky Footer
     </div>
-    <div class="modal">testing
-        <div>
-        </div>
+    <div class="modal">modal
+    </div>
+</div>

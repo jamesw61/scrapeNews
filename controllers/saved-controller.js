@@ -1,8 +1,8 @@
 var express = require("express");
-// var db = require("../models");
 var router = express.Router();
 var Article = require("../models/Article.js");
 
+//gets saved articles for the /saved route
 router.get("/", function(req, res) {
 	Article.find({ "saved": true }, function(error, doc) {
             if (error) {
@@ -14,10 +14,9 @@ router.get("/", function(req, res) {
         });
 });
 
+//updates an article's saved property to true
 router.post("/:id", function(req, res) {
 		console.log(req.params.id);
-		// let x = 'ObjectId("' + req.params.id + '")';
-		// console.log(x);
         Article.findOneAndUpdate({ "_id": req.params.id},{"saved": true})
         .exec(function(err, doc) {
             if (err) {
@@ -29,10 +28,9 @@ router.post("/:id", function(req, res) {
         });
 });
 
+//updates an article's saved property to false
 router.post("/unsave/:id", function(req, res) {
         console.log(req.params.id);
-        // let x = 'ObjectId("' + req.params.id + '")';
-        // console.log(x);
         Article.findOneAndUpdate({ "_id": req.params.id},{"saved": false})
         .exec(function(err, doc) {
             if (err) {

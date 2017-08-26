@@ -11,22 +11,14 @@ body {
     grid-template-columns: repeat(6, 1fr);
 }
 .box {
-    background-color: #dddddd;
+  background-color: black;
+    /*background-color: #ffffff;*/
     color: black;
     padding: 10px;
     font-size: 125%;
     /*border-style: solid;*/
 }
-.sidebar2 {
-    grid-area: sidebar2;
-    grid-column-start: 5;
-    grid-column-end: 7;
-    grid-row: 2;
-    /*border-style: solid;*/
-    color: black;
-    background-color: #bbb;
-    /*border-radius: 5px;*/
-}
+
 
 .content {
     grid-area: content;
@@ -97,6 +89,7 @@ body {
     grid-column-start: 1;
     grid-column-end: 7;
     background-color: #999;
+    bottom: 0;
 
 }
 
@@ -114,38 +107,20 @@ body {
 
 
 
-/*@media only screen and (min-width: 500px) {
-    .wrapper {
-
-        grid-template-columns: 20% auto;
-        grid-template-areas: "header   header" "sidebar  content" "sidebar2 sidebar2" "footer   footer";
-    }
-  
-}
-
-@media only screen and (min-width: 600px) {
-    .wrapper {
-        /*grid-gap: 20px;*/
-/*        grid-template-columns: 240px auto 240px;
-        grid-template-areas: "header  header  header" "sidebar content sidebar2" "footer  footer  footer";*/
-        /*max-width: 100%;*/
-/*    }
-
-}*/
-
-
-
 .articleWell {
   display: grid;
   grid-template-columns: repeat(4,1fr);
-  background-color: #bbb;
+  /*background-color: #bfcccc;*/
+  background-color: darkgrey;
   border-style: solid;
-  border-color: black;
+  border-color: lightgrey;
   border-width: 1px;
-  margin: 5px;
+  margin: auto;
+  margin-bottom: 10px;
     border-radius: 5px;
   color: black;
-  height: auto;
+  height: 100px;
+  width: 70%;
 }
 
 .picture {
@@ -173,6 +148,9 @@ body {
   height: 30px;
   width: 60px;
   margin-right: 5px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: black;
 }
 
 #noteBtn {
@@ -220,11 +198,9 @@ body {
 }
 
 .noteBody {
-  /*border-style: solid;*/
     grid-column-start: 1;
   grid-column-end: 5;
   grid-row: 2;
-  /*background-color: red;*/
 }
 
 .notesTitle {

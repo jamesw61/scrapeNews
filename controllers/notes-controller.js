@@ -3,29 +3,21 @@ var router = express.Router();
 var Article = require("../models/Article.js");
 var Note = require("../models/Note.js");
 
-
+// the Save Note button points here
 router.post("/:id", function(req, res) {
-  // Create a new note and pass the req.body to the entry
   var newNote = new Note(req.body);
 
-  // And save the new note the db
   newNote.save(function(error, doc) {
-    // Log any errors
     if (error) {
       console.log(error);
     }
-    // Otherwise
     else {
-      // Use the article id to find and update it's note
       Article.findOneAndUpdate({ "_id": req.params.id }, {$push: {"notes": doc._id} })
-      // Execute the above query
       .exec(function(err, doc) {
-        // Log any errors
         if (err) {
           console.log(err);
         }
         else {
-          // Or send the document to the browser
           res.json(doc);
         }
       });
@@ -33,18 +25,42 @@ router.post("/:id", function(req, res) {
   });
 });
 
+//Remove button on note modal points here
+//and removes note reference from articles mongo collection
+//and removes note fromm notes mongo collection
+router.post("/delete/:id", function(req, res) {
+
+  Article.findOneAndUpdate({ "_id": req.body.artId }, {$pull: {"notes":  req.params.id} })
+      .exec(function(err, doc) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          console.log('removed note ref from notes array')
+        }
+      });
+
+    Note.remove({ "_id": req.params.id})
+        .exec(function(err, doc) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log('removed note')
+            }
+        });
+
+
+});
+
+//this gets the notes for an article after clicking the Notes button
 router.get("/:id", function(req, res) {
-  // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   Article.findOne({ "_id": req.params.id })
-  // ..and populate all of the notes associated with it
   .populate("notes")
-  // now, execute our query
   .exec(function(error, doc) {
-    // Log any errors
     if (error) {
       console.log(error);
     }
-    // Otherwise, send the doc to the browser as a json object
     else {
       console.log('doc: ' + doc);
       res.json(doc);
