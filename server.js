@@ -19,11 +19,11 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-mongoose.connect("mongodb://heroku_z2rz24m6:sj29b4n8g08g47q21gp5sijj9e@ds151222.mlab.com:51222/heroku_z2rz24m6");
+// mongoose.connect("mongodb://heroku_z2rz24m6:sj29b4n8g08g47q21gp5sijj9e@ds151222.mlab.com:51222/heroku_z2rz24m6");
 
-// mongoose.connect("mongodb://localhost/tvNews", {
-//   useMongoClient: true
-// });
+mongoose.connect("mongodb://localhost/tvNews", {
+  useMongoClient: true
+});
 
 var db = mongoose.connection;
 

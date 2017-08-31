@@ -5,13 +5,13 @@ var Article = require("../models/Article.js");
 
 
 router.get("/", function(req, res) {
-        Article.find({}).sort({"_id": -1}).limit(20)
+        Article.find({}).sort({"_id": 1}).limit(20)
         .exec(function(error, doc) {
             if (error) {
                 console.log(error);
             }
             else {
-                return res.render("index", { bacon: doc });
+                res.render("index", { bacon: doc });
             }
         });
 });

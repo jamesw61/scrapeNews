@@ -1,10 +1,10 @@
  function getNotes(thisId) {
-  $.ajax({
+     $.ajax({
              method: "GET",
              url: "/notes/" + thisId
          })
          .done(function(data) {
-             
+
              $(".modal").empty();
              $(".modal").show();
              $(".modal").append('<h3 class="notesTitle">' + data.title + "</h3>");
@@ -42,6 +42,8 @@
          })
          .done(function(data) {
              console.log(data);
+             
+
          });
  });
 
@@ -54,12 +56,12 @@
 
  });
 
-//Remove button on note modal removes note from mongo but
-//I can't get the getNotes function to reload the notes.
+ //Remove button on note modal removes note from mongo but
+ //I can't get the getNotes function to reload the notes.
  $(document).on("click", "#removeNote", function() {
      var thisId = $(this).attr("data-id");
      var artId = $(this).attr("art-id");
-     
+
      $.ajax({
              method: "POST",
              url: "notes/delete/" + thisId,
@@ -74,7 +76,7 @@
              console.log("thisId  " + thisId);
              getNotes(artId);
              console.log("artId" + artId);
-             
+
          });
  });
 
